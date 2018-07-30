@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "hyfer-frontend"
+		},
+		{
+			"path": "hyfer-backend"
+		}
+	],
+  "settings": {
+		"javascript.implicitProjectConfig.experimentalDecorators": true,
+    "cSpell.words": [
+      "mixins",
+      "mobx",
+      "unarchive"
+    ]
+  }
+}
