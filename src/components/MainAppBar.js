@@ -106,9 +106,7 @@ class MainAppBar extends Component {
     if (isLoggedIn) {
       this.setState({ anchorEl: event.currentTarget });
     } else {
-      const url = process.env.NODE_ENV === 'development'
-        ? `${process.env.REACT_APP_API_BASE_URL}/auth/github`
-        : 'auth/github';
+      const url = `${process.env.REACT_APP_API_BASE_URL}/auth/github`;
       window.location.href = url;
     }
   };
