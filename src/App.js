@@ -44,7 +44,6 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    console.log(`"${window.location.search}"`);
     let token = null;
     const { search } = window.location;
     if (search) {
