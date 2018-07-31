@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { withTheme } from '@material-ui/core/styles';
 import NotificationSnackbar from './components/NotificationSnackbar';
-import cookie from 'react-cookies';
+// import cookie from 'react-cookies';
 import AboutPage from './routes/about/AboutPage';
 // import HomeworkPage from './routes//homework/HomeworkPage';
 import MainAppBar from './components/MainAppBar';
@@ -44,9 +44,20 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    let token = cookie.load('token');
+    console.log(`"${window.location.search}"`);
+    let token = null;
+    const { search } = window.location;
+    if (search) {
+      const parts = search.split('=');
+
+      if (parts[0] === '?token') {
+        token = parts[1];
+      }
+      window.location.search = '';
+    }
+
     if (token) {
-      token = JSON.parse(token);
+      // token = JSON.parse(token);
       window.localStorage.setItem('token', token);
     }
     token = window.localStorage.getItem('token');
