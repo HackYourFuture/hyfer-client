@@ -46,7 +46,8 @@ export default class CurrentModuleStore {
   @action
   async getRunningModuleDetails(selectedModule) {
     try {
-      const details = await fetchJSON(`/api/running/details/${selectedModule.running_module_id}`);
+      const { group_name, running_module_id } = selectedModule;
+      const details = await fetchJSON(`/api/running/details/${group_name}/${running_module_id}`);
       stores.timeline.setTabIndex(0);
 
       const { group, module, teachers, notes } = details;
