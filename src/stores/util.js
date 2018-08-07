@@ -12,14 +12,19 @@ export async function fetchJSON(path, method = 'GET', data = null) {
 
   const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}${path}`, options);
 
-  if (res.status === 200) {
-    return await res.json();
+  if (res.ok) {
+    return res.status === 200 ? await res.json() : undefined;
   }
 
-  if (res.status >= 400) {
-    const result = await res.json();
+  if (res.status === 422) {
+    throw new Error('The server rejected the request parameter(s).');
+  }
+
+  const body = await res.text();
+  try {
+    const result = JSON.parse(body);
     throw new Error(result.message || result.sqlMessage || 'Unexpected server error.');
+  } catch (err) {
+    throw new Error(`${res.status} - ${res.statusText}`);
   }
-
-  return undefined;
 }
