@@ -139,7 +139,7 @@ class UsersPage extends React.Component {
         </Paper>
 
         <div className={classes.container}>
-          {users.map(user => <UserCard key={user.id} user={user} />)}
+          {users.map(user => <UserCard key={`${user.group_name}:${user.id}`} user={user} />)}
         </div>
       </div >
     );
